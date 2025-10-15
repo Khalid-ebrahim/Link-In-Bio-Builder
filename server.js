@@ -41,6 +41,7 @@ app.get('/', async (req, res) => {
 })
 
 
-app.listen(PORT, () => {
-  console.log(`auth App is listening${PORT}`)
-})
+// app.listen(PORT, () => {
+//   console.log(`auth App is listening${PORT}`)
+// })
+module.exports = app
