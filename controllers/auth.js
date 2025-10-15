@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
+const slugify = require('slugify')
 //Routes/ API's/ controllers functions
 router.get('/sign-up', (req, res) => {
   res.render('auth/sign-up.ejs')
@@ -20,7 +21,15 @@ router.post('/sign-up', async (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10)
     req.body.password = hashedPassword
 
-    const user = await User.create(req.body)
+  const slug = slugify(req.body.username, { lower: true })
+
+    const user = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: hashedPassword,
+      slug
+    })
+
     res.send(`Thanks for signing up ${user.username}`)
   } catch (error) {
     console.log(error)
@@ -56,5 +65,20 @@ router.get("/sign-out", (req, res) => {
   req.session.destroy();
   res.redirect("/");
 })
+
+router.get('/u/:slug', async (req, res) => {
+  try {
+    const user = await User.findOne({ slug: req.params.slug })
+    if (!user) {
+      return res.status(404).send('User not found')
+    }
+
+    res.render('auth/public-profile.ejs', { user })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send('Server error')
+  }
+})
+
 
 module.exports = router
