@@ -4,19 +4,20 @@ const express = require('express')
 const session = require('express-session')
 const passUserToView = require('./middleware/pass-user-to-view')
 const isSignIn = require('./middleware/is-signed-in')
-const app = express()
-
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const morgan = require('morgan')
+const authCtrl = require('./controllers/auth')
 
-const PORT = process.env.PORT ? process.env.PORT : '3000'
+const app = express()
 
+// Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {
-  console.log(`connected to MongoDB Database: ${mongoose.connection.name}.`)
+  console.log(`Connected to MongoDB: ${mongoose.connection.name}`)
 })
 
+// Middleware
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 app.use(morgan('dev'))
@@ -28,20 +29,25 @@ app.use(
   })
 )
 app.use(passUserToView)
-//require controllers
-const authCtrl = require('./controllers/auth')
 
+// Set view engine
+app.set('view engine', 'ejs')
 
-//Use controller
+// Controllers
 app.use('/auth', authCtrl)
 
-//Root Route
-app.get('/', async (req, res) => {
-  res.render('index.ejs')
+// Root route
+app.get('/', (req, res) => {
+  res.render('index') // make sure index.ejs exists in views/
 })
 
+// Only listen locally
+const PORT = process.env.PORT || 3000
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`Auth App listening at http://localhost:${PORT}`)
+  })
+}
 
-// app.listen(PORT, () => {
-//   console.log(`auth App is listening${PORT}`)
-// })
+// Export for Vercel
 module.exports = app
