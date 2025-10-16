@@ -1,0 +1,7 @@
+<h1>Edit Link</h1>
+<form action="/links/<%= link._id %>?_method=PUT" method="POST">
+  <input name="title" value="<%= link.title %>" required>
+  <input name="url" value="<%= link.url %>" required>
+  <button type="submit">Update</button>
+</form>
+<a href="/links">Back</a>

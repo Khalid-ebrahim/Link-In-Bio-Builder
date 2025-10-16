@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title><%= user.username %>'s Profile</title>
-</head>
-<body>
-  <h1>Welcome to <%= user.username %>’s Profile</h1>
-  <p>Email: <%= user.email %></p>
-  <p>Public Slug: /u/<%= user.slug %></p>
-</body>
-</html>
+<h1><%= user.username %>’s Links</h1>
+<ul>
+  <% links.forEach(link => { %>
+    <li><a href="<%= link.url %>" target="_blank"><%= link.title %></a></li>
+  <% }) %>
+</ul>

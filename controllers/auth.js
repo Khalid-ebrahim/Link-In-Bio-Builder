@@ -1,84 +1,57 @@
-const router = require('express').Router()
+const express = require('express')
+const router = express.Router()
 const bcrypt = require('bcrypt')
-const User = require('../models/user')
-const slugify = require('slugify')
-//Routes/ API's/ controllers functions
+const User = require('../models/User')
+
+// Sign-up form
 router.get('/sign-up', (req, res) => {
-  res.render('auth/sign-up.ejs')
+  res.render('auth/sign-up')
 })
 
+// Sign-up post
 router.post('/sign-up', async (req, res) => {
   try {
-    const userInDatabase = await User.findOne({ username: req.body.username })
-    if (userInDatabase) {
-      return res.send('Username already taken')
-    }
-
-    if (req.body.password !== req.body.confirmPassword) {
-      return res.send('Password and confirm password must match.')
-    }
-    // bcrypt for password encryption
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10)
-    req.body.password = hashedPassword
-
-  const slug = slugify(req.body.username, { lower: true })
-
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
     const user = await User.create({
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
-      slug
     })
-
-    res.send(`Thanks for signing up ${user.username}`)
-  } catch (error) {
-    console.log(error)
+    req.session.user = user
+    res.redirect('/links')
+  } catch (err) {
+    console.error(err)
+    res.redirect('/auth/sign-up')
   }
 })
 
+// Sign-in form
 router.get('/sign-in', (req, res) => {
-  res.render('auth/sign-in.ejs')
+  res.render('auth/sign-in')
 })
 
+// Sign-in post
 router.post('/sign-in', async (req, res) => {
-  const userInDatabase = await User.findOne({ username: req.body.username })
-  if (!userInDatabase) {
-    return res.send('login failed. Please try again later')
-  }
-  const validPassword = bcrypt.compareSync(
-    req.body.password,
-    userInDatabase.password
-  )
-  if (!validPassword) {
-    return res.send('login failed. Please try again later')
-  }
-
-  // User exists and Password is valid.
-  req.session.user = {
-    username: userInDatabase.username,
-    _id: userInDatabase._id
-  }
-  res.redirect('/')
-})
-
-router.get("/sign-out", (req, res) => {
-  req.session.destroy();
-  res.redirect("/");
-})
-
-router.get('/u/:slug', async (req, res) => {
   try {
-    const user = await User.findOne({ slug: req.params.slug })
-    if (!user) {
-      return res.status(404).send('User not found')
-    }
+    const user = await User.findOne({ username: req.body.username })
+    if (!user) return res.redirect('/auth/sign-in')
 
-    res.render('auth/public-profile.ejs', { user })
-  } catch (error) {
-    console.log(error)
-    res.status(500).send('Server error')
+    const valid = await bcrypt.compare(req.body.password, user.password)
+    if (!valid) return res.redirect('/auth/sign-in')
+
+    req.session.user = user
+    res.redirect('/links')
+  } catch (err) {
+    console.error(err)
+    res.redirect('/auth/sign-in')
   }
 })
 
+// Sign out
+router.get('/sign-out', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/')
+  })
+})
 
 module.exports = router

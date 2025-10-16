@@ -1,22 +1,8 @@
-<body>
-  <h1>Create a new account</h1>
-
-  <form action="/auth/sign-up" method="post">
-    <label> Username:</label>
-    <input type="text" name="username">
-
-    <br>
-
-    <label>Password:</label>
-    <input type="password" name="password">
-
-    <br>
-
-    <label>Confirm Password:</label>
-    <input type="password" name="confirmPassword">
-
-    <br>
-
-    <button type="submit">Sign up</button>
-  </form>
-</body>
+<h1>Sign Up</h1>
+<form action="/auth/sign-up" method="POST">
+  <input name="username" placeholder="Username" required>
+  <input name="email" placeholder="Email">
+  <input name="password" type="password" placeholder="Password" required>
+  <button type="submit">Create Account</button>
+</form>
+<a href="/auth/sign-in">Already have an account?</a>

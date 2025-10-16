@@ -1,0 +1,13 @@
+<h1>Your Links</h1>
+<a href="/links/new">Add New Link</a>
+<ul>
+  <% links.forEach(link => { %>
+    <li>
+      <a href="<%= link.url %>" target="_blank"><%= link.title %></a>
+      <a href="/links/<%= link._id %>/edit">Edit</a>
+      <form action="/links/<%= link._id %>?_method=DELETE" method="POST" style="display:inline">
+        <button>Delete</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
