@@ -1,7 +1,22 @@
-<h1>Sign In</h1>
-<form action="/auth/sign-in" method="POST">
-  <input name="username" placeholder="Username" required>
-  <input name="password" placeholder="Password" type="password" required>
-  <button type="submit">Sign In</button>
-</form>
-<a href="/auth/sign-up">Need an account?</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="sign-in-page">
+  <div class="container form-container">
+    <h1 class="main-title">Sign In</h1>
+
+    <form action="/auth/sign-in" method="POST" class="auth-form">
+      <input class="form-input" name="username" placeholder="Username" required>
+      <input class="form-input" name="password" placeholder="Password" type="password" required>
+      <button class="btn form-btn" type="submit">Sign In</button>
+    </form>
+
+    <a class="btn link-btn" href="/auth/sign-up">Need an account?</a>
+  </div>
+</body>
+</html>

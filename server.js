@@ -18,6 +18,8 @@ const Link = require('./models/Link')
 
 const app = express()
 
+app.use(express.static('Styling'))
+
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {

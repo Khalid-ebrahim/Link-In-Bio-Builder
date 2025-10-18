@@ -1,0 +1,356 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body */
+body#home-page {
+  background-color: #e0f7ff; /* Light blue background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Container */
+.container {
+  text-align: center;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* Main title */
+.main-title {
+  color: #0b5ed7;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* Greeting */
+.greeting {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+/* Links / Buttons */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+a.btn {
+  display: inline-block;
+  background-color: #0b5ed7;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+a.btn:hover {
+  background-color: #084298;
+  transform: translateY(-2px);
+}
+
+/* Username highlight */
+.username {
+  font-weight: bold;
+  color: #0b5ed7;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .main-title {
+    font-size: 2rem;
+  }
+
+  a.btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+}
+/* =====================
+   Public Profile Page
+===================== */
+body#public-profile-page .container {
+  padding: 40px 20px;
+}
+
+body#public-profile-page .no-links {
+  font-size: 1.1rem;
+  color: #555;
+  text-align: center;
+  margin-top: 20px;
+}
+/* =====================
+   Sign In Page
+===================== */
+body#sign-in-page .container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.form-input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-btn {
+  background-color: #0b5ed7;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-btn:hover {
+  background-color: #084298;
+  transform: translateY(-2px);
+}
+
+body#sign-in-page a.link-btn {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+}
+/* =====================
+   Sign Up Page
+===================== */
+body#sign-up-page .container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+body#sign-up-page .auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+body#sign-up-page .form-input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+body#sign-up-page .form-btn {
+  background-color: #0b5ed7;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+body#sign-up-page .form-btn:hover {
+  background-color: #084298;
+  transform: translateY(-2px);
+}
+
+body#sign-up-page a.link-btn {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+}
+/* =====================
+   Edit Link Page
+===================== */
+body#edit-link-page .container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+body#edit-link-page .auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+body#edit-link-page .form-input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+body#edit-link-page .form-btn {
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+body#edit-link-page .form-btn:hover {
+  background-color: #084298;
+  transform: translateY(-2px);
+}
+
+body#edit-link-page a.link-btn {
+
+  margin-top: 10px;
+
+}
+
+/* =====================
+   Links Index Page 
+===================== */
+body#links-index-page .container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+body#links-index-page .main-title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+body#links-index-page .links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body#links-index-page .link-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f4faff;
+}
+
+/* The link text on the left */
+body#links-index-page .link-item a.link-btn:first-child {
+  text-decoration: none;
+  font-weight: bold;
+  color: #0b5ed7;
+  flex-grow: 1; /* take remaining space */
+}
+
+body#links-index-page .link-item a.link-btn:first-child:hover {
+  text-decoration: underline;
+}
+
+/* Edit and Delete buttons on the right */
+body#links-index-page .link-item a.link-btn:not(:first-child),
+body#links-index-page .link-item button.delete-btn {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  min-width: 60px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  margin-left: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Edit button style */
+body#links-index-page .link-item a.link-btn:not(:first-child) {
+  background-color: #0b5ed7;
+  text-decoration: none;
+  display: inline-block;
+}
+
+body#links-index-page .link-item a.link-btn:not(:first-child):hover {
+  background-color: #084298;
+  transform: translateY(-1px);
+}
+
+/* Delete button style */
+body#links-index-page .link-item button.delete-btn {
+  background-color: #e74c3c;
+}
+
+body#links-index-page .link-item button.delete-btn:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* =====================
+   New Link Page
+===================== */
+body#new-link-page .container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+body#new-link-page .auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+body#new-link-page .form-input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+body#new-link-page .form-btn {
+  background-color: #0b5ed7;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+body#new-link-page .form-btn:hover {
+  background-color: #084298;
+  transform: translateY(-2px);
+}
+
+body#new-link-page a.link-btn {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+}

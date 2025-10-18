@@ -1,7 +1,22 @@
-<h1>Edit Link</h1>
-<form action="/links/<%= link._id %>?_method=PUT" method="POST">
-  <input name="title" value="<%= link.title %>" required>
-  <input name="url" value="<%= link.url %>" required>
-  <button type="submit">Update</button>
-</form>
-<a href="/links">Back</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Link</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="edit-link-page">
+  <div class="container form-container">
+    <h1 class="main-title">Edit Link</h1>
+
+    <form action="/links/<%= link._id %>?_method=PUT" method="POST" class="auth-form">
+      <input class="form-input" name="title" value="<%= link.title %>" required>
+      <input class="form-input" name="url" value="<%= link.url %>" required>
+      <button class="btn form-btn" type="submit">Update</button>
+    </form>
+
+    <a class="btn link-btn" href="/links">Back</a>
+  </div>
+</body>
+</html>

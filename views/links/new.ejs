@@ -1,7 +1,22 @@
-<h1>New Link</h1>
-<form action="/links" method="POST">
-  <input name="title" placeholder="Title" required>
-  <input name="url" placeholder="https://example.com" required>
-  <button type="submit">Save</button>
-</form>
-<a href="/links">Back</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Link</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="new-link-page">
+  <div class="container form-container">
+    <h1 class="main-title">New Link</h1>
+
+    <form action="/links" method="POST" class="auth-form">
+      <input class="form-input" name="title" placeholder="Title" required>
+      <input class="form-input" name="url" placeholder="https://example.com" required>
+      <button class="btn form-btn" type="submit">Save</button>
+    </form>
+
+    <a class="btn link-btn" href="/links">Back</a>
+  </div>
+</body>
+</html>

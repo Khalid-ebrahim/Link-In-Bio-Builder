@@ -1,11 +1,28 @@
-<h1>Welcome to the app!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body id="home-page">
+  <div class="container">
+    <h1 class="main-title">Welcome to the app!</h1>
 
-<% if (user) { %>
-  <p>Hi <%= user.username %></p>
-  <a href="/auth/sign-out">Sign out</a>
-  <br><a href="/links">Manage Links</a>
-  <br><a href="/u/<%= user.slug %>">View your public page</a>
-<% } else { %>
-  <a href="/auth/sign-in">Sign in</a> | 
-  <a href="/auth/sign-up">Sign up</a>
-<% } %>
+    <% if (user) { %>
+      <p class="greeting">Hi <span class="username"><%= user.username %></span></p>
+      <div class="links">
+        <a class="btn" href="/auth/sign-out" id="sign-out">Sign out</a>
+        <a class="btn" href="/links" id="manage-links">Manage Links</a>
+        <a class="btn" href="/u/<%= user.slug %>" id="public-page">View your public page</a>
+      </div>
+    <% } else { %>
+      <div class="links">
+        <a class="btn" href="/auth/sign-in" id="sign-in">Sign in</a>
+        <a class="btn" href="/auth/sign-up" id="sign-up">Sign up</a>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
