@@ -47,12 +47,19 @@ app.set('view engine', 'ejs')
 app.use('/auth', authCtrl)
 app.use('/links', linksCtrl)
 
-// Root route
-app.get('/', (req, res) => {
-  res.render('index')
+// Root route - show all public links
+app.get('/', async (req, res) => {
+  try {
+    // Fetch all links with user data
+    const publicLinks = await Link.find().populate('user').sort('-_id')
+    res.render('index', { publicLinks, user: req.session.user })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Server error')
+  }
 })
 
-// Public profile page
+// Public profile page for a single user
 app.get('/u/:slug', async (req, res) => {
   try {
     const user = await User.findOne({ slug: req.params.slug })
@@ -68,7 +75,7 @@ app.get('/u/:slug', async (req, res) => {
 
 const PORT = process.env.PORT || 3000
 if (process.env.VERCEL !== '1') {
-  app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`))
+  app.listen(PORT, () => console.log(` Server running on http://localhost:${PORT}`))
 }
 
 module.exports = app

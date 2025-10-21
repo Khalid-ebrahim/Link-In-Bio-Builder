@@ -11,7 +11,7 @@
     <h1 class="main-title">Welcome to the app!</h1>
 
     <% if (user) { %>
-      <p class="greeting">Hi <span class="username"><%= user.username %></span></p>
+      <p class="greeting"><span class="username"><%= user.username %></span></p>
       <div class="links">
         <a class="btn" href="/auth/sign-out" id="sign-out">Sign out</a>
         <a class="btn" href="/links" id="manage-links">Manage Links</a>
@@ -23,6 +23,24 @@
         <a class="btn" href="/auth/sign-up" id="sign-up">Sign up</a>
       </div>
     <% } %>
+
+    <!-- 🆕 Public Links Section -->
+    <hr style="margin: 30px 0; border: 0; border-top: 1px solid #ddd;">
+    <h2 class="main-title" style="font-size: 1.8rem;">Public Links from All Users</h2>
+
+    <% if (publicLinks && publicLinks.length > 0) { %>
+      <ul class="public-links-list">
+        <% publicLinks.forEach(item => { %>
+          <li class="public-link-card">
+            <span class="username"><%= item.user.username %></span>
+            <a class="link-btn" href="<%= item.url %>" target="_blank"><%= item.title %></a>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>No public links yet.</p>
+    <% } %>
   </div>
 </body>
 </html>
+

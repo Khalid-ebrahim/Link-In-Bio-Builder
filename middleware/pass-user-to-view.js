@@ -1,4 +1,5 @@
 module.exports = (req, res, next) => {
-  res.locals.user = req.session.user || null
+  // Use optional chaining to prevent error if req.session is undefined
+  res.locals.user = req.session?.user || null
   next()
 }
